@@ -1,0 +1,93 @@
+@font-face {
+    font-family: "Garamond Premr Pro";
+    src: url(fonts/Garamond\ Premier\ Pro\ Caption.otf);
+}
+@font-face {
+    font-family: "Glamour";
+    src: url(fonts/Glamour\ Absolute\ regular.ttf);
+}
+
+*{
+    margin: 0;
+}
+
+.headline {
+    font-family: "Glamour";
+    font-size: 100px;
+    line-height: 75%;
+    text-align: right;
+    color: #D94E8F;
+    font-weight: normal;
+}
+
+p {
+    font-family: "Garamond Premr Pro";
+    font-size: 20px;
+}
+
+.navbar {
+    font-family: "Glamour";
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+
+    background: #FFFFFF;
+    padding: 0px 50px 0px 50px;
+    height: 50px;
+    box-shadow: 0px 0px 5px rgba(67, 26, 100, 0.25);
+}
+.navbar p {
+    font-family: "Glamour";
+}
+.nav-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+    flex-direction: row;
+}
+.logo {
+    font-size: 20px;
+}
+
+/* MAIN */
+
+.main-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 50px 0px 0px;
+
+    margin: 50px 100px 50px 100px;
+    background: rgba(242, 236, 253, 0.75);
+    border-radius: 25px;
+}
+.main-image {
+    flex: none;
+    max-width: 50%;
+    max-height: 50%;
+}
+.main-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 50%;
+}
+.sahithi-headline {
+    height: 165px;
+}
+.bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.bullets1 {
+    display: flex;
+    flex-direction: row;
+}
+.bullet-image {
+    height: 25px;
+    width: 25px;
+}
