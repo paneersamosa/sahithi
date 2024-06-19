@@ -8,9 +8,8 @@ year: 2023 - 2024
 
 featured: false
 layout: project
-permalink: /work/digityle/
 
-image: "/assets/postimages/test.jpg"
+image: "assets/postimages/test.jpg"
 image-alt: Test image
 tags: ["ux research"]
 description: Designed UI/UX and developed brand identity for Brallium's ecommerce site, highlighting sustainability and gender-neutrality, in an 8-week project with a 2-person design team.

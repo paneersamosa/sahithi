@@ -8,7 +8,6 @@ year: 2023
 
 featured: true
 layout: project
-permalink: ../work/brallium/
 
 logo: "assets/postimages/brallium/logo.png"
 image: "assets/postimages/brallium/bgimage.png"
