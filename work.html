@@ -1,0 +1,110 @@
+---
+title: Work
+layout: subpage
+permalink: /work
+---
+<div class="project-container">
+
+    <div class="filter">
+        <p>Filter by:</p>
+        
+    </div>
+    
+    {% for project in site.work %}  
+
+    
+    <div class="card">
+        <img src="{{ project.image }}" alt="{{ project.image-alt}}">
+        
+        <div class="info">
+            <div class="main-info">
+                <h3>{{ project.title }}</h3>
+                <p><strong>{{ project.year }}</strong></p>
+            </div>
+            <div class="tags">
+                {% for tag in project.tags %}
+                    <div class="tag">
+                        {{tag | upcase}}
+                    </div>
+                {% endfor %}
+            </div>
+            <p class="description"> {{ project.description }}</p>
+    
+            <div class="view-button">
+                <a href="{{ project.url }}"><strong class="view-btn">VIEW PROJECT</strong></a>
+            </div>
+        </div>
+    </div>
+    
+    
+    {% endfor %}
+</div>
+  
+<style>
+    .project-container {
+        padding: 0 10vw 100px 10vw;
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
+    }
+    .project-container .card {
+        display: flex;
+        flex-direction: row;
+        gap: 5vw;
+        align-items: center;
+    }
+    .project-container .info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .project-container img {
+        width: 40%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .project-container .card .main-info {
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: space-between;
+    }
+    
+    .project-container .card .tags {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .project-container .card .tags .tag {
+        padding: 5px 10px;
+        border-radius: 10px;
+        background: rgba(154, 119, 207, 0.10);
+        color: var(--bright-lav);
+        line-height: normal;
+    }
+    .project-container .card .button {
+        border: none;
+    }
+    .project-container .main-info p {
+        color: var(--bright-lav);
+    }
+    .project-container .card a {
+        text-decoration: none;
+        color: var(--knight-purple);
+    }
+    .project-container .view-btn {
+        margin-left: -1vw;
+        padding: 1vw;
+        transition: 1s ease-in-out;
+        display: inline-block;
+        border-radius: 10px;
+    }
+
+    .project-container .view-btn:hover {
+        background-color: var(--knight-purple);
+        color: var(--pale-purple);
+        transform: translate(1vw,0vw);
+    }
+</style>

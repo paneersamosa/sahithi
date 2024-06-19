@@ -1,0 +1,43 @@
+<div class="progress-container" id="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+    <div class="progress-sections">
+        {% for section in page.sections %}
+            <a href="#{{ section.id }}" class="progress-link">{{ section.title | upcase}}</a>
+        {% endfor %}
+    </div>
+</div>
+<style>
+    .progress-container {
+        position: sticky;
+        top: calc(var(--navbar-height) - 20px);
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 10vw;
+        background-color: var(--pale-purple);
+    }
+    .progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        background: var(--bright-pink);
+        transition: width 0s;
+    }
+    .progress-sections {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .progress-link {
+        text-decoration: none;
+        color: var(--bright-lav);
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .project-content {
+        padding-top: 60px;
+    }
+    </style>

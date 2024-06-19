@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --knight-purple: #543884;
+    --bright-pink: #EC4176;
+    --turmeric: #FFA45E;
+    --bright-lav: #9A77CF;
+    --pale-purple: #F9F9FF;
+
+    --navbar-height: 0px;
+}
+
+html {
+    background-color: var(--pale-purple);
+    width: 100%;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: 'Brandon Text';
+    font-style: normal;
+    font-weight: normal;
+    src: url(/assets/fonts/HVD\ Fonts\ -\ BrandonText-Regular.otf);
+}
+@font-face {
+    font-family: 'Brandon Text';
+    font-style: italic;
+    font-weight: normal;
+    src: url(/assets/fonts/HVD\ Fonts\ -\ BrandonText-RegularItalic.otf);
+}
+@font-face {
+    font-family: 'Brandon Text';
+    font-weight: bold;
+    font-style: normal;
+    src: url(/assets/fonts/HVD\ Fonts\ -\ BrandonText-Bold.otf);
+}
+
+body {
+    top: var(--navbar-height);
+    font-family: 'Brandon Text', sans-serif;
+    font-weight: normal;
+    color: var(--knight-purple);
+    font-size: 20px;
+}
+
+h1, h2, h3 {
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-weight: 225;
+    color: var(--knight-purple)
+}
+
+h1 {
+    font-size: 65px;
+    font-style: italic;
+}
+
+h3 {
+    font-size: 35px;
+    
+}
+
+.divline {
+    width: 50%;
+    height: 1px;
+    background-color: var(--bright-pink);
+}
+
+/* ANIMATIONS */
+
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: var(--scale, scale(1)) translateY(0);
+    }
+    50% {
+        transform: var(--scale, scale(1)) translateY(-40px);
+    }
+}
+
+@keyframes floatSideSide {
+    0%, 100% {
+        transform: var(--scale, scale(1)) translateX(0);
+    }
+    50% {
+        transform: var(--scale, scale(1)) translateX(-40px);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
