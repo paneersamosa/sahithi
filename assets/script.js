@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Intersection Observer to observe sections
     const observerOptions = {
         root: null,
-        rootMargin: `-1000px 0px 0px 0px`, // Include offset in root margin
+        rootMargin: `-200px 0px 0px 0px`, // Include offset in root margin
         threshold: 0.1 // Adjust threshold as needed
     };
 
