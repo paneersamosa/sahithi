@@ -7,6 +7,7 @@ team: "Maleeha Zaman (Designer)"
 year: 2023
 
 featured: true
+published: true
 layout: project
 
 logo: "assets/postimages/brallium/logo.png"

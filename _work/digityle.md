@@ -7,6 +7,7 @@ team: "UCLA DevX    Digityle UXD Team"
 year: 2023 - 2024
 
 featured: false
+published: true
 layout: project
 
 image: "assets/postimages/test.jpg"

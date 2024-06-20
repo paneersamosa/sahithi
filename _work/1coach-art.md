@@ -7,6 +7,7 @@ team: "Christine Han (Designer)"
 year: 2023 - 2024
 
 featured: true
+published: true
 layout: project
 
 logo: "assets/postimages/brallium/logo.png"

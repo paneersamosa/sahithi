@@ -1,6 +1,7 @@
 ---
 title: Work
 layout: subpage
+permalink: /work
 ---
 <div class="project-container">
 
@@ -10,30 +11,33 @@ layout: subpage
     </div>
     
     {% for project in site.work %}  
+        {% if project.published %}
 
     
-    <div class="card">
-        <img src="{{ project.image }}" alt="{{ project.image-alt}}">
-        
-        <div class="info">
-            <div class="main-info">
-                <h3>{{ project.title }}</h3>
-                <p><strong>{{ project.year }}</strong></p>
-            </div>
-            <div class="tags">
-                {% for tag in project.tags %}
-                    <div class="tag">
-                        {{tag | upcase}}
+            <div class="card">
+                <img src="{{ project.image }}" alt="{{ project.image-alt}}">
+                
+                <div class="info">
+                    <div class="main-info">
+                        <h3>{{ project.title }}</h3>
+                        <p><strong>{{ project.year }}</strong></p>
                     </div>
-                {% endfor %}
+                    <div class="tags">
+                        {% for tag in project.tags %}
+                            <div class="tag">
+                                {{tag | upcase}}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <p class="description"> {{ project.description }}</p>
+            
+                    <div class="view-button">
+                        <a href="{{ project.url }}"><strong class="view-btn">VIEW PROJECT</strong></a>
+                    </div>
+                </div>
             </div>
-            <p class="description"> {{ project.description }}</p>
-    
-            <div class="view-button">
-                <a href="{{ project.url }}"><strong class="view-btn">VIEW PROJECT</strong></a>
-            </div>
-        </div>
-    </div>
+        
+        {% endif %}
     
     
     {% endfor %}

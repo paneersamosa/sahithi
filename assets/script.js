@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentUrl = window.location.href;
 
     // Define the base URL of the work page
-    const workPageUrl = '/work/';
+    const workPageUrl = '/work';
 
     // Function to remove active class from nav links
     function removeActiveClass() {
