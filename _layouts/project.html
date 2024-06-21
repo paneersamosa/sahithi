@@ -19,7 +19,7 @@
 
         <div class="hero-content">
             <div class="logo">
-                <img src="{{ page.logo | relative_url }}" alt="">
+                <img src="{{ page.logo | relative_url }}" alt="{{ page.title }} Logo">
             </div>
 
             <div class="hero-text">
@@ -76,6 +76,7 @@
         flex-direction: column;
         gap: 1.5rem;
         padding: 0 10vw;
+        color: var(--pale-purple);
     }
 
     .phero-landing .hero-content .logo {
@@ -170,7 +171,7 @@
     }
 
     .project-content ul li {
-        list-style-image: url('/assets/star-bullet.svg');
+        list-style-image: url("{{ 'assets/star-bullet.svg' | relative_url }}");
         padding-left: 1em;
         margin-bottom: 1em;
     }

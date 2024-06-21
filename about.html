@@ -6,29 +6,43 @@ layout: subpage
 <div class="aboutcontent">
     <div class="shortcv">
         <h2>Short CV</h2>
-        <div class="divline"></div>
         <div class="cvbullet">
-            <p>Project Manager @ Creative Labs</p>
+            <div class="cvtext">
+                <p>Creative Labs @ UCLA</p>
+                <p>Project Manager</p>
+            </div>
             <p class="date">2024--</p>
         </div>
         <div class="cvbullet">
-            <p>Website & Graphic Design Coordinator @ UCLA Art</p>
+            <div class="cvtext">
+                <p>UCLA Art</p>
+                <p>Website & Graphic Design Coordinator</p>
+            </div>
             <p class="date">2024--</p>
         </div>
         <div class="cvbullet">
-            <p>Student Design Assistant @ UCLA Lewis / ITS</p>
+            <div class="cvtext">
+                <p>UCLA Lewis / ITS</p>
+                <p>Student Design Assistant</p>
+            </div>
             <p class="date">2024--</p>
         </div>
         <div class="cvbullet">
-            <p>Project Manager @ Creative Labs</p>
-            <p class="date">2024--</p>
+            <div class="cvtext">
+                <p>Nova, Tech for Good</p>
+                <p>UI / UX Designer</p>
+            </div>
+            <p class="date">2023--</p>
         </div>
         <div class="cvbullet">
-            <p>Project Manager @ Creative Labs</p>
-            <p class="date">2024--</p>
+            <div class="cvtext">
+                <p>ACM @ UCLA</p>
+                <p>Design Officer</p>
+            </div>
+            <p class="date">2023--</p>
         </div>
-
     </div>
+
     <div class="aboutme">
         <h2>Hi, I'm Sahithi!</h2>
 
@@ -50,13 +64,35 @@ layout: subpage
     }
     .shortcv {
         width: 30%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        border-radius: 10px;
+    }
+    .shortcv h2 {
+        padding-bottom: 0.5em;
+        margin-bottom: 0.5em;
+        border-bottom: 1px solid var(--bright-pink);
     }
     .shortcv .cvbullet {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         gap: 2.5vw;
-        margin-bottom: 2.5vh;
+        margin-bottom: 0.5em;
+        font-size: 0.9em;
+    }
+
+    .shortcv .cvbullet .cvtext {
+        width: 70%;
+    }
+
+    .shortcv .cvbullet .cvtext p:first-of-type {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.75em;
+        color: var(--bright-lav);
     }
     
     .aboutme {

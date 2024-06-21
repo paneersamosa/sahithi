@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="assets/sllogo.svg">
-    <link rel="stylesheet" href="assets/main.css">
+    <link rel="icon" type="image/x-icon" href="{{ 'assets/sllogo.svg' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'assets/main.css' | relative_url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
     {% include footer.html %}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="assets/script.js"></script>
+    <script src="{{ 'assets/script.js' | relative_url }}"></script>
 </body>
 </html>
 
@@ -65,20 +65,22 @@
         z-index: 0;
     }
     .pseudoheader .cloud-container {
-        width: 125%;
+        width: 125vw;
     }
     .pseudoheader .cloud-container2 {
-        width: 125%;
+        width: 125svw;
     }
     .pseudoheader .bigcloud {
-        position: inherit;
+        width: 100%;
+        position: absolute;
         bottom: -65vh;
         animation: floatSideSide 10s ease-in-out infinite;
         animation-delay: -2s;
     }
     .pseudoheader .bigcloud2 {
+        width: 100%;
         opacity: 0.5;
-        position: inherit;
+        position: absolute;
         bottom: -55vh;
         animation: floatSideSide 10s ease-in-out infinite;
     }

@@ -1,6 +1,7 @@
 ---
 title: Home
 layout: default
+permalink: /home
 ---
 <html class="indexpage">
 <div class="hero-landing">
@@ -58,7 +59,7 @@ layout: default
 
     <div class="project-container">
 
-        {% for project in site.work %}  
+        {% for project in site.works %}  
             {% if project.featured %}
 
                 <div class="card">
@@ -316,7 +317,6 @@ layout: default
         display: inline-block;
         border-radius: 10px;
     }
-
     .project-container .view-btn:hover {
         background-color: var(--knight-purple);
         color: var(--pale-purple);

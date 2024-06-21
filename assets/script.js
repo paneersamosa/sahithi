@@ -116,33 +116,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressLinks = document.querySelectorAll('.progress-link');
     const offset = 200; // Buffer in pixels
 
-    // Intersection Observer to observe sections
-    const observerOptions = {
-        root: null,
-        rootMargin: `-200px 0px 0px 0px`, // Include offset in root margin
-        threshold: 0.1 // Adjust threshold as needed
-    };
+    // Function to update progress bar based on scroll position in section
+    function updateProgressBar(section) {
+        const sectionHeight = section.offsetHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollBottom = scrollTop + window.innerHeight;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const index = Array.from(sections).indexOf(entry.target);
-                const totalSections = sections.length;
-                const percentage = ((index + 1) / totalSections) * 100;
-                progressBar.style.width = percentage + '%';
-                progressBar.style.transition = 'width 1.5s ease'; // Transition effect
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + sectionHeight;
 
-                // Highlight the current progress link
-                progressLinks.forEach(link => link.classList.remove('active'));
-                if (progressLinks[index]) {
-                    progressLinks[index].classList.add('active');
-                }
+        if (scrollBottom >= sectionBottom) {
+            const index = Array.from(sections).indexOf(section);
+            const totalSections = sections.length;
+            const percentage = ((index + 1) / totalSections) * 100;
+            progressBar.style.width = percentage + '%';
+            progressBar.style.transition = 'width 1.5s ease'; // Transition effect
+
+            // Highlight the current progress link
+            progressLinks.forEach(link => link.classList.remove('active'));
+            if (progressLinks[index]) {
+                progressLinks[index].classList.add('active');
             }
-        });
-    }, observerOptions);
+        }
+    }
 
-    sections.forEach(section => {
-        observer.observe(section);
+    // Event listener for scroll to update progress bar
+    window.addEventListener('scroll', () => {
+        sections.forEach(section => {
+            updateProgressBar(section);
+        });
     });
 
     // Smooth scrolling for progress links with offset
@@ -158,4 +160,55 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+});
+
+// FILTER BY TAG ON WORK PAGE
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.card');
+
+    // Function to handle filtering based on selected tag
+    const handleFilter = (selectedTag) => {
+        projects.forEach(project => {
+            const projectTags = project.getAttribute('data-tags').toLowerCase();
+
+            // Display the project if it contains the selected tag or if "SHOW ALL" is selected
+            if (selectedTag === 'show-all' || projectTags.includes(selectedTag)) {
+                project.style.display = ''; // Reset to default
+            } else {
+                project.style.display = 'none'; // Hide the project
+            }
+        });
+
+        // Remove active class from all filter buttons
+        filterButtons.forEach(button => button.classList.remove('active'));
+
+        // Add active class to the clicked filter button
+        document.querySelector(`.filter-btn[data-tag="${selectedTag}"]`).classList.add('active');
+    };
+
+    // Event listener for filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedTag = button.getAttribute('data-tag');
+
+            // Handle filtering based on selected tag
+            handleFilter(selectedTag);
+        });
+    });
+
+    // Event listener for "SHOW ALL" button
+    const showAllButton = document.getElementById('show-all-btn');
+    if (showAllButton) {
+        showAllButton.addEventListener('click', () => {
+            // Handle filtering to show all projects
+            projects.forEach(project => {
+                project.style.display = ''; // Reset to default for all projects
+            });
+
+            // Remove active class from all filter buttons
+            filterButtons.forEach(button => button.classList.remove('active'));
+            showAllButton.classList.add('active');
+        });
+    }
 });

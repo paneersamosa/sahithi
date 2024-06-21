@@ -7,15 +7,35 @@ permalink: /work
 
     <div class="filter">
         <p>Filter by:</p>
-        
+
+        {% assign all_tags = "" %}
+    
+        {% for project in site.works %}
+            {% for tag in project.tags %}
+                {% assign all_tags = all_tags | append: tag | append: "," %}
+            {% endfor %}
+        {% endfor %}
+    
+        {% assign unique_tags = all_tags | split: "," | uniq | sort %}
+    
+        <div class="tag-options">
+            <button id="show-all-btn" class="filter-btn active">ALL</button>
+            {% for tag in unique_tags %}
+                {% if tag != "" %}
+                    <button class="filter-btn" data-tag="{{ tag | slugify }}">{{ tag | upcase }}</button>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
     
-    {% for project in site.work %}  
+    
+    
+    {% for project in site.works %}  
         {% if project.published %}
 
     
-            <div class="card">
-                <img src="{{ project.image }}" alt="{{ project.image-alt}}">
+            <div class="card" data-tags="{{ project.tags | join: ',' | slugify }}">
+                <img src="{{ project.image | relative_url }}" alt="{{ project.image-alt}}">
                 
                 <div class="info">
                     <div class="main-info">
@@ -32,15 +52,15 @@ permalink: /work
                     <p class="description"> {{ project.description }}</p>
             
                     <div class="view-button">
-                        <a href="{{ project.url }}"><strong class="view-btn">VIEW PROJECT</strong></a>
+                        <a href="{{ project.url | relative_url }}"><strong class="view-btn">VIEW PROJECT</strong></a>
                     </div>
                 </div>
             </div>
         
         {% endif %}
     
-    
     {% endfor %}
+
 </div>
   
 <style>
@@ -109,5 +129,36 @@ permalink: /work
         background-color: var(--knight-purple);
         color: var(--pale-purple);
         transform: translate(1vw,0vw);
+    }
+    .project-container .filter {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+        align-items: center;
+    }
+
+    .project-container .filter-btn {
+        font-family: 'Brandon Text';
+        font-size: 20px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background: rgba(154, 119, 207, 0.10);
+        color: var(--bright-lav);
+        line-height: normal;
+        border: none;
+        transition: 0.5s ease-in-out;
+    }
+    .project-container .tag-options {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .project-container .filter-btn.active {
+        background-color: var(--knight-purple);
+        color: var(--pale-purple);
+    }
+    .project-container .filter-btn:hover {
+        transform: scale(1);
+        cursor: pointer;
     }
 </style>
