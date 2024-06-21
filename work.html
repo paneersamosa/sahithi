@@ -10,7 +10,7 @@ permalink: /work
 
         {% assign all_tags = "" %}
     
-        {% for project in site.works %}
+        {% for project in site.work %}
             {% for tag in project.tags %}
                 {% assign all_tags = all_tags | append: tag | append: "," %}
             {% endfor %}
@@ -30,7 +30,7 @@ permalink: /work
     
     
     
-    {% for project in site.works %}  
+    {% for project in site.work %}  
         {% if project.published %}
 
     
