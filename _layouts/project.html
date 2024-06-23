@@ -39,7 +39,11 @@
                 </div>
                 <div class="hero-td">
                     <p class="td-title">TEAM</p>
-                    <p class="td-desc">{{ page.team }}</p>
+                    <div class="td-desc team-desc">
+                        {% for member in page.team %}
+                            <p>{{ member }}</p>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
 
@@ -99,8 +103,8 @@
     }
 
     .phero-landing .hero-text .hero-td {
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: max-content auto;
         gap: 1rem;
         align-items: end;
     }
@@ -109,10 +113,16 @@
         font-size: 0.9em;
         font-weight: bold;
         letter-spacing: 0.05em;
+        align-self: end; /* Ensures the title aligns to the bottom of the cell */
     }
 
     .phero-landing .hero-td .td-desc {
         line-height: normal;
+    }
+
+    .hero-td .team-desc {
+        display: flex;
+        flex-direction: column;
     }
 
     .project-content {

@@ -3,7 +3,7 @@ title: "Coach Art"
 role: "UI Designer"
 duration: "8 weeks"
 tools: "Figma"
-team: "Christine Han (Designer)"
+team: ["Christine Han (Designer)"]
 year: 2023 - 2024
 
 featured: true

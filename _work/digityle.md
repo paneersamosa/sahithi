@@ -3,7 +3,7 @@ title: "Digityle"
 role: "UX Designer"
 duration: "10 weeks"
 tools: "Figma"
-team: "UCLA DevX Digityle UXD Team"
+team: ["Jessica Ti (UI/UX Lead)", "Maggie Ju", "Wennan Liu", "Jessica Liu"]
 year: 2024
 
 featured: false

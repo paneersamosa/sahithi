@@ -3,7 +3,7 @@ title: "Brallium"
 role: "UI/UX & Brand Designer"
 duration: "8 weeks"
 tools: "Figma, Miro, Google Forms"
-team: "Maleeha Zaman (Designer)"
+team: ["Maleeha Zaman (Designer)"]
 year: 2023
 
 featured: true

@@ -12,6 +12,15 @@
     --pale-purple: #F9F9FF;
 
     --navbar-height: 0px;
+    
+    --breakpoint-sm: 320px;
+    --breakpoint-md: 375px;
+    --breakpoint-lg: 425px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-laptop-sm: 1024px;
+    --breakpoint-laptop-md: 1280px;
+    --breakpoint-desktop: 1440px;
+    --breakpoint-desktop-lg: 1920px;
 }
 
 html {
