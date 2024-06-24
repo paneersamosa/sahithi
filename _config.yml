@@ -1,3 +1,5 @@
 collections:
   work:
     output: true
+  play:
+    output: true

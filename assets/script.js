@@ -106,6 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.section');
     const progressBar = document.getElementById('progress-bar');
     const progressLinks = document.querySelectorAll('.progress-link');
+    const mobileSections = document.getElementById('mobile-sections');
+    const currentSection = document.getElementById('current-section');
+    const expandedSections = document.getElementById('expanded-sections');
     const offset = 200;
 
     function updateProgressBar(section) {
@@ -126,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
             progressLinks.forEach(link => link.classList.remove('active'));
             if (progressLinks[index]) {
                 progressLinks[index].classList.add('active');
+                // Update the current-section div with the current section title
+                currentSection.textContent = progressLinks[index].textContent;
             }
         }
     }
@@ -147,6 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 behavior: 'smooth'
             });
         });
+    });
+
+    // Initial update to set the current section title for mobile
+    if (sections.length > 0) {
+        updateProgressBar(sections[0]);
+    }
+
+    // Toggle function for current section title click
+    currentSection.addEventListener('click', () => {
+        mobileSections.classList.toggle('expanded');
     });
 });
 

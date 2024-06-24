@@ -13,7 +13,7 @@ permalink: /work/brallium
 
 logo: "assets/postimages/brallium/logo.png"
 image: "assets/postimages/brallium/bgimage.png"
-image-alt: Test image
+image-alt: "Test image"
 bg-image: "assets/postimages/brallium/bgimage.png"
 tags: ["ui design", "ux research", "design system"]
 description: Designed UI/UX and developed brand identity for Brallium's ecommerce site, highlighting sustainability and gender-neutrality, in an 8-week project with a 2-person design team.

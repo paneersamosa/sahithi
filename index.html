@@ -113,8 +113,8 @@ permalink: /
         flex-direction: column;
         gap: 1vh;
         text-align: center;
-        margin: auto;
-        z-index: 1;
+        margin: 0 5vw;
+        z-index: 5;
     }
     .main-text .mt1 {
         position: relative;
@@ -161,22 +161,21 @@ permalink: /
 
     /* GRAPHIC ELEMENTS */
     .hero-landing .cloud-container {
+        position: absolute;
         color: transparent;
         width: 125vw;
-        position: absolute;
-        bottom: 0;
+        bottom: -40%;
         z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .hero-landing .bigcloud {
         width: 100%;
-        display: flex;
-        z-index: 0;
-        justify-content: center;
-        align-items: center;
+        
         height: auto;
         fill: #F9F9FF;
         opacity: 1;
-        position: absolute;
         animation: floatSideSide 10s ease-in-out infinite;
     }
     .hero-landing .cloud-container2 {
@@ -184,8 +183,7 @@ permalink: /
         color: transparent;
         width: 125vw;
         position: absolute;
-        bottom: 0;
-        margin-bottom: 35%;
+        bottom: -15%;
     }
     .hero-landing .bigcloud2 {
         width: 100%;
@@ -195,7 +193,6 @@ permalink: /
         align-items: center;
         height: auto;
         opacity: 0.5;
-        position: absolute;
         animation: floatSideSide 10s ease-in-out infinite;
         animation-delay: -2s;
     }
@@ -251,8 +248,8 @@ permalink: /
     
     .hero-landing .birds {
         position: absolute;
-        right: 250px;
-        top: 100px;
+        right: 15%;
+        top: 10%;
         animation: birdFloat 10s ease-in-out infinite;
     }
 
@@ -307,7 +304,7 @@ permalink: /
     }
     .project-container .card a {
         text-decoration: none;
-        color: var(--knight-purple);
+        color: var(--bright-lav);
     }
 
     .project-container .view-btn {

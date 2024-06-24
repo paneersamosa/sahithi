@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ 'assets/sllogo.svg' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'assets/main.css' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>{{ page.title }}</title>
+</head>
+<body>
+
+    {% include header.html %}
+
+    {% include banner.html %}
+
+    {{ content }}
+
+    {% if site.play %}
+        {% assign current_item_id = page.index %}
+        {% assign total_items = site.play | size %}
+        
+        {% for item in site.play %}
+            {% if item.index == current_item_id %}
+                {% assign current_item_index = forloop.index0 %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+        
+        {% assign previous_index = current_item_index | minus: 1 %}
+        {% assign next_index = current_item_index | plus: 1 %}
+
+        <div class="navigation-buttons">
+            {% if previous_index >= 0 %}
+                
+                <a class="prev-btn" href="{{ site.play[previous_index].permalink }}" class="btn">
+                    <div class="prev-btn-content">
+                        <p>PREV</p>
+                        <p>{{ site.play[previous_index].title }}</p>
+                    </div>
+                </a>
+            {% else %}
+                <div class="empty-div"></div>
+            {% endif %}
+            
+            {% if next_index < total_items %}
+                <a class="next-btn" href="{{ site.play[next_index].permalink }}" class="btn">
+                    <div class="prev-btn-content">
+                        <p>NEXT</p>
+                        <p>{{ site.play[next_index].title }}</p>
+                    </div>
+                </a>
+            {% else %}
+                <div class="empty-div"></div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% include footer.html %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ 'assets/script.js' | relative_url }}"></script>
+</body>
+</html>
+
+<style>
+    .play-content {
+        margin: 100px 10vw;
+    }
+    .play-content p {
+        margin-bottom: 1em;
+    }
+    .play-content img {
+        width: 75%;
+        border-radius: 20px;
+        margin-bottom: 0.5em;
+    }
+    .play-content figure {
+        margin: 2.5em 0;
+        display: flex;
+        align-items: start;
+        gap: 1.5em;
+    }
+    .play-content figcaption {
+        margin: 1em 0 auto 0;
+        display: inline-block;
+        font-style: italic;
+        color: var(--bright-lav);
+        border-left: 2.5px solid var(--turmeric);
+        padding-left: 0.5em;
+    }
+    .navigation-buttons {
+        background-color: #9A77CF1A;
+        display: flex;
+        justify-content: space-between;
+        padding: 50px 10vw;
+    }
+    .navigation-buttons .next-btn {
+        text-align: right;
+    }
+    .navigation-buttons .next-btn, .navigation-buttons .prev-btn {
+        text-decoration: none;
+    }
+    .navigation-buttons .next-btn p:first-of-type, .navigation-buttons .prev-btn p:first-of-type {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.75em;
+        color: var(--bright-lav);
+    }
+</style>

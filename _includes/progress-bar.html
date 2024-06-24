@@ -1,11 +1,22 @@
 <div class="progress-container" id="progress-container">
     <div class="progress-bar" id="progress-bar"></div>
-    <div class="progress-sections">
-        {% for section in page.sections %}
+    <div class="mobile-sections" id="mobile-sections">
+        <div class="current-section" id="current-section"></div>
+        <div class="expanded-sections" id="expanded-sections">
+            <p class="instruction">~ Press a section below to navigate ~</p>
+            {% for section in page.sections %}
             <a href="#{{ section.id }}" class="progress-link">{{ section.title | upcase}}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nm-sections">
+        {% for section in page.sections %}
+        <a href="#{{ section.id }}" class="progress-link">{{ section.title | upcase}}</a>
         {% endfor %}
     </div>
 </div>
+
+
 <style>
     .progress-container {
         position: sticky;
@@ -26,9 +37,44 @@
         background: var(--bright-pink);
         transition: width 0s;
     }
-    .progress-sections {
+    .mobile-sections {
+        display: none;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+    }
+    .current-section {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        color: var(--bright-lav);
+        cursor: pointer;
+        justify-content: center;
+    }
+    .expanded-sections {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: var(--pale-purple);
+        padding: 10px;
+        width: 100%;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .expanded-sections .instruction {
+        font-style: italic;
+        font-size: 0.8em;
+    }
+
+    .expanded-sections .progress-link {
+        color: var(--turmeric); /* Change text color of links in expanded section */
+    }
+
+    .nm-sections {
         width: 100%;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
     }
     .progress-link {
@@ -40,4 +86,26 @@
     .project-content {
         padding-top: 60px;
     }
-    </style>
+
+    @media (max-width: 899px) {
+        .mobile-sections {
+            display: block;
+        }
+        .nm-sections {
+            display: none;
+        }
+    }
+    @media (min-width: 900px) {
+        .mobile-sections {
+            display: none;
+        }
+        .nm-sections {
+            display: flex;
+        }
+    }
+
+    /* Styles for expanded mobile sections */
+    .mobile-sections.expanded .expanded-sections {
+        display: flex;
+    }
+</style>
