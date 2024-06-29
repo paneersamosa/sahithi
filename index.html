@@ -164,7 +164,7 @@ permalink: /
         position: absolute;
         color: transparent;
         width: 125vw;
-        bottom: -40%;
+        bottom: -40px;
         z-index: 2;
         display: flex;
         justify-content: center;
@@ -172,20 +172,22 @@ permalink: /
     }
     .hero-landing .bigcloud {
         width: 100%;
-        
         height: auto;
+        position: absolute;
         fill: #F9F9FF;
         opacity: 1;
         animation: floatSideSide 10s ease-in-out infinite;
     }
     .hero-landing .cloud-container2 {
+        position: absolute;
         z-index: 0;
         color: transparent;
         width: 125vw;
-        position: absolute;
+        position: relative;
         bottom: -15%;
     }
     .hero-landing .bigcloud2 {
+        position: absolute;
         width: 100%;
         display: flex;
         z-index: 0;
@@ -295,6 +297,7 @@ permalink: /
         background: rgba(154, 119, 207, 0.10);
         color: var(--bright-lav);
         line-height: normal;
+        text-align: center;
     }
     .project-container .card .button {
         border: none;
@@ -318,6 +321,75 @@ permalink: /
         background-color: var(--knight-purple);
         color: var(--pale-purple);
         transform: translate(1vw,0vw);
+    }
+
+    @media (max-width: 1200px) {
+        .main-text > h1 {
+            font-size: 2em;
+        }
+        .hero-landing .cloud-container {
+            bottom: 0;
+        }
+        .project-container h3 {
+            font-size: 1.5em;
+        }
+        .hero-landing .ball1 {
+            --scale: scale(0.35);
+
+        }
+        .hero-landing .ball2 {
+            --scale: scale(0.5);
+            
+        }
+        .hero-landing .ball3 {
+            --scale: scale(0.2);
+            
+        }
+        .hero-landing .ball4 {
+            --scale: scale(0.65);
+        }
+        .hero-landing .birds {
+            --scale: scale(0.5);
+            right: 0vw;
+            top: 10%;
+        }
+    }
+    @media (max-width: 850px) {
+        .project-container .card {
+            display: flex;
+            flex-direction: column;
+        }
+        .project-container .card img {
+            width: 100%;
+        }
+        .project-container {
+            font-size: 0.9em;
+        }
+        .project-container .filter {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            align-items: center;
+        }
+        .project-container .filter-btn {
+            font-family: 'Brandon Text';
+            font-size: 20px;
+            padding: 0.25em 0.5em;
+            border-radius: 10px;
+            background: rgba(154, 119, 207, 0.10);
+            color: var(--bright-lav);
+            line-height: normal;
+            border: none;
+            transition: 0.5s ease-in-out;
+        }
+        .project-container .tag-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+    @media (min-width: 1099px) {
+
     }
 
 </style>

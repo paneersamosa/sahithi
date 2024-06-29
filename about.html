@@ -52,7 +52,7 @@ layout: subpage
             
         <p>From there, my love for both design and web programming spiraled into what it is today. Crafting lovely experiences for people to navigate while keeping them at the center of my design process is something I’m very passionate about.</p>
             
-        <p>Outside of designing, I love creating digital art (@paneerarts on IG!), and doing anything crafty, such as building miniatures and cutting paper. I also am part of Science Olympiad at UCLA as an event volunteer for invitational, regional, and state levels of competition (7 years of SciOly going strong!). You can also find me actively scouting for anything and everything purple or playing internet/computer games (my favorites: Poptropica, Stardew Valley, Firewatch, Omori, Alto’s Odyssey)!</p>
+        <p>Outside of designing, I love creating digital art (@paneerarts on IG!), building miniatures, and absolutely anything to do with paper (printing, gluing, cutting, reading). I also am part of Science Olympiad at UCLA as an event volunteer for invitational, regional, and state levels of competition (7 years of SciOly going strong!). You can also find me actively scouting for anything and everything purple or playing internet/computer games (my favorites: Poptropica, Stardew Valley, Firewatch, Lumino City, Alto’s Odyssey, Monument Valley)!</p>
     </div>
 </div>
 
@@ -100,6 +100,29 @@ layout: subpage
         display: flex;
         flex-direction: column;
         gap: 2.5vh;
+    }
+
+    @media (max-width: 1099px) {
+        .aboutcontent {
+            flex-direction: column;
+            flex-flow: column-reverse;
+            gap: 2.5em;
+            font-size: 0.8em;
+        }
+        .aboutme {
+            width: 100%;
+        }
+        .shortcv {
+            width: 100%;
+        }
+    }
+    @media (min-width: 1100px) {
+        .aboutcontent {
+            flex-direction: row;
+        }
+        .aboutme {
+            width: 60%;
+        }
     }
 
 </style>

@@ -18,6 +18,7 @@ html {
     background-color: var(--pale-purple);
     width: 100%;
     overflow-x: hidden;
+    font-size: 20px;
 }
 
 @font-face {
@@ -44,7 +45,7 @@ body {
     font-family: 'Brandon Text', sans-serif;
     font-weight: normal;
     color: var(--knight-purple);
-    font-size: 20px;
+    font-size: 1em;
 }
 
 h1, h2, h3 {
@@ -54,13 +55,7 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 65px;
     font-style: italic;
-}
-
-h3 {
-    font-size: 35px;
-    
 }
 
 .divline {
@@ -98,4 +93,18 @@ h3 {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (max-width: 899px) {
+    h1 {
+        font-size: 3em;
+    }
+}
+@media (min-width: 900px) {    
+    h1 {
+        font-size: 3.25em;
+    }
+    h3 {
+        font-size: 1.75em;
+    }
 }

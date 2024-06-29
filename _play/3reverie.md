@@ -7,7 +7,7 @@ layout: play
 permalink: /play/reverie
 index: 3
 
-image: "assets/postimages/test.jpg"
+image: "assets/playimages/reverie/banner.png"
 image-alt: Test image
 tags: ["illustration"]
 description: Work that I share on my Instagram art account.

@@ -3,37 +3,60 @@ title: Play
 layout: subpage
 permalink: /play
 ---
+<div class="play-container">
+    <div class="filter" id="play-filter">
+        <p>Filter by:</p>
 
-<div class="gallery">
-    {% for item in site.play %}
-        <div class="gallery-item">
-            <a href="{{ item.url | relative_url }}">
-                <img src="{{ item.image | relative_url }}" alt="{{ item.image-alt }}">
-                <div class="gallery-item-description">
-                    <p><strong>{{ item.title }}</strong></p>
-                    <p>{{ item.description }}</p>
-                </div>
-            </a>
-            
+        {% assign all_tags = "" %}
+
+        {% for project in site.play %}
+            {% for tag in project.tags %}
+                {% assign all_tags = all_tags | append: tag | append: "," %}
+            {% endfor %}
+        {% endfor %}
+
+        {% assign unique_tags = all_tags | split: "," | uniq | sort %}
+
+        <div class="tag-options">
+            <button id="show-all-btn" class="filter-btn active" data-tag="show-all">ALL</button>
+            {% for tag in unique_tags %}
+                {% if tag != "" %}
+                    <button class="filter-btn" data-tag="{{ tag | slugify }}">{{ tag | upcase }}</button>
+                {% endif %}
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
+
+    <div class="gallery">
+        {% for item in site.play %}
+            {% if item.published %}
+                <div class="gallery-item" data-tags="{{ item.tags | join: ',' | slugify }}">
+                    <a href="{{ item.url | relative_url }}">
+                        <img src="{{ item.image | relative_url }}" alt="{{ item.image-alt }}">
+                        <div class="gallery-item-description">
+                            <p><strong>{{ item.title }}</strong></p>
+                            <p>{{ item.description }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 </div>
 
 
 <style>
     .gallery {
-        display: flex;
-        flex-wrap: wrap;
         margin: 100px 10vw;
     }
 
     .gallery-item {
-        margin: 10px;
-        width: calc(33.333% - 20px);
-        border-radius: 10px;
-        overflow: hidden;
+        width: calc(33.333% - 20px); /* Adjust the percentage as needed */
+        margin-bottom: 10px; /* Space between rows */
         transition: transform 0.3s ease;
         position: relative;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     .gallery-item img {
@@ -41,6 +64,7 @@ permalink: /play
         height: auto;
         display: block;
     }
+
     .gallery-item:hover {
         transform: scale(1.05);
     }
@@ -68,15 +92,66 @@ permalink: /play
     .gallery-item:hover .gallery-item-description {
         opacity: 1;
     }
+
+    .play-container .filter {
+        margin: 100px 10vw 0 10vw;
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+        align-items: center;
+    }
+
+    .play-container .filter-btn {
+        font-family: 'Brandon Text';
+        font-size: 20px;
+        padding: 0.25em 0.5em;
+        border-radius: 10px;
+        background: rgba(154, 119, 207, 0.10);
+        color: var(--bright-lav);
+        line-height: normal;
+        border: none;
+        transition: 0.5s ease-in-out;
+    }
+    .play-container .tag-options {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .play-container .filter-btn.active {
+        background-color: var(--knight-purple);
+        color: var(--pale-purple);
+    }
+    .play-container .filter-btn:hover {
+        transform: scale(1.05);
+        background-color: var(--bright-lav);
+        color: var(--pale-purple);
+        cursor: pointer;
+    }
+
+    @media (max-width: 1200px) {
+        .gallery-item {
+            width: calc(50% - 10px);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .gallery-item {
+            width: 100%;
+        }
+    }
 </style>
+
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var grid = document.querySelector('.gallery');
-        var msnry = new Masonry(grid, {
-            itemSelector: '.gallery-item',
-            columnWidth: '.gallery-item',
-            percentPosition: true
+        imagesLoaded(grid, function() {
+            var msnry = new Masonry(grid, {
+                itemSelector: '.gallery-item',
+                percentPosition: true,
+                gutter: 10 // Adjust the space between items
+            });
         });
     });
 </script>
-

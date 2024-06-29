@@ -9,7 +9,7 @@ index: 2
 
 image: "assets/postimages/test.jpg"
 image-alt: Test image
-tags: ["illustration"]
+tags: ["form"]
 description: Work that I share on my Instagram art account.
 ---
 
