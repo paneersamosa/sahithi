@@ -22,7 +22,7 @@
                 <img src="{{ page.logo | relative_url }}" alt="{{ page.title }} Logo">
             </div>
 
-            <div class="hero-text">
+            <div class="hero-text {% if page.dark-mode %}dark{% else %}light{% endif %}">
                 <h3>OVERVIEW</h3>
 
                 <div class="hero-td">
@@ -55,6 +55,43 @@
 
     {{ content }}
 
+    {% if site.work %}
+        {% assign current_item_index = 0 %}
+        {% for item in site.work %}
+            {% if item.permalink == page.permalink %}
+                {% break %}
+            {% endif %}
+            {% assign current_item_index = current_item_index | plus: 1 %}
+        {% endfor %}
+        
+        {% assign previous_index = current_item_index | minus: 1 %}
+        {% assign next_index = current_item_index | plus: 1 %}
+        
+        <div class="navigation-buttons">
+            {% if previous_index >= 0 %}
+                <a class="prev-btn" href="{{ site.work[previous_index].permalink }}" class="btn">
+                    <div class="prev-btn-content">
+                        <p>PREV</p>
+                        <p>{{ site.work[previous_index].title }}</p>
+                    </div>
+                </a>
+            {% else %}
+                <div class="empty-div"></div>
+            {% endif %}
+            
+            {% if next_index < site.work.size %}
+                <a class="next-btn" href="{{ site.work[next_index].permalink }}" class="btn">
+                    <div class="next-btn-content">
+                        <p>NEXT</p>
+                        <p>{{ site.work[next_index].title }}</p>
+                    </div>
+                </a>
+            {% else %}
+                <div class="empty-div"></div>
+            {% endif %}
+        </div>
+    {% endif %}
+
     {% include footer.html %}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -80,7 +117,7 @@
         flex-direction: column;
         gap: 1.5rem;
         padding: 0 10vw;
-        color: var(--pale-purple);
+        color: var(--pale-purple)
     }
 
     .phero-landing .hero-content .logo {
@@ -95,11 +132,17 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        color: var(--pale-purple);
     }
 
-    .phero-landing h3 {
+    .phero-landing .hero-text.dark {
         color: var(--pale-purple);
+    }
+    .phero-landing .hero-text.light {
+        color: var(--knight-purple);
+    }
+
+    .phero-landing .hero-text h3 {
+        color: inherit;
     }
 
     .phero-landing .hero-text .hero-td {
@@ -212,6 +255,32 @@
         text-decoration: none;
         text-transform: uppercase;
         color: var(--pale-purple);
+    }
+    .navigation-buttons {
+        background-color: var(--pale-purple);
+        display: flex;
+        justify-content: space-between;
+        padding: 50px 10vw;
+    }
+    .navigation-buttons .next-btn {
+        text-align: right;
+    }
+    .navigation-buttons .next-btn, .navigation-buttons .prev-btn {
+        text-decoration: none;
+    }
+    .navigation-buttons .next-btn p:first-of-type, .navigation-buttons .prev-btn p:first-of-type {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.75em;
+        color: var(--bright-lav);
+    }
+    .navigation-buttons .next-btn p:last-of-type, .navigation-buttons .prev-btn p:last-of-type {
+        color: var(--knight-purple);
+        border-bottom: 2px solid var(--pale-purple);
+        transition: 0.5s;
+    }
+    .navigation-buttons .next-btn p:last-of-type:hover, .navigation-buttons .prev-btn p:last-of-type:hover {
+        border-bottom: 2px solid var(--bright-pink);
     }
 
     @media (min-width: 180px) {

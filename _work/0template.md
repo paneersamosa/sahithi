@@ -15,6 +15,7 @@ logo: "assets/sllogo.svg"
 image: "assets/postimages/test.jpg"
 image-alt: ""
 bg-image: "assets/postimages/test.jpg"
+dark-mode: true
 tags: [""]
 description: 
 

@@ -58,6 +58,15 @@ h1 {
     font-style: italic;
 }
 
+h4 {
+    font-family: 'Brandon Text', sans-serif;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--bright-lav);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
 .divline {
     width: 50%;
     height: 1px;

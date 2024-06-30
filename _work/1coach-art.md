@@ -15,6 +15,7 @@ logo: "assets/sllogo.svg"
 image: "assets/postimages/test.jpg"
 image-alt: Test image
 bg-image: "assets/postimages/test.jpg"
+dark-mode: true
 tags: ["ui design"]
 description: Designed UI/UX and developed brand identity for Brallium's ecommerce site, highlighting sustainability and gender-neutrality, in an 8-week project with a 2-person design team.
 

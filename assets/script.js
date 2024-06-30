@@ -208,37 +208,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // FILTER ON PLAY GALLERY
 document.addEventListener('DOMContentLoaded', () => {
-    const filterContainer = document.getElementById('play-filter');
-    if (!filterContainer) return;
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const gallery = document.querySelector('.gallery');
 
-    const filterButtons = filterContainer.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // Initialize Masonry
+    const masonry = new Masonry(gallery, {
+        itemSelector: '.gallery-item',
+        columnWidth: '.gallery-item', // Adjust this selector as per your layout
+        percentPosition: true
+    });
 
-    console.log('Filter container found:', filterContainer);
-    console.log('Filter buttons:', filterButtons);
-    console.log('Gallery items:', galleryItems);
-
+    // Function to handle filtering
     const handleFilter = (selectedTag) => {
-        console.log('Selected tag:', selectedTag);
+        const galleryItems = document.querySelectorAll('.gallery-item');
 
         galleryItems.forEach(item => {
-            const itemTags = item.getAttribute('data-tags').toLowerCase().split(',');
-            console.log('Item tags:', itemTags);
+            const tags = item.getAttribute('data-tags').split(',');
+            const isVisible = selectedTag === 'show-all' || tags.includes(selectedTag);
 
-            if (selectedTag === 'show-all' || itemTags.includes(selectedTag)) {
-                item.style.display = '';
-            } else {
-                item.style.display = 'none';
-            }
+            item.style.display = isVisible ? '' : 'none';
         });
 
-        filterButtons.forEach(button => button.classList.remove('active'));
-        const activeButton = filterContainer.querySelector(`.filter-btn[data-tag="${selectedTag}"]`);
-        if (activeButton) {
-            activeButton.classList.add('active');
-        }
+        // Layout Masonry after filtering
+        masonry.layout();
     };
 
+    // Add click event listeners to filter buttons
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const selectedTag = button.getAttribute('data-tag');
@@ -246,17 +241,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const showAllButton = filterContainer.querySelector('#show-all-btn');
-    if (showAllButton) {
-        showAllButton.addEventListener('click', () => {
-            galleryItems.forEach(item => {
-                item.style.display = '';
-            });
-
-            filterButtons.forEach(button => button.classList.remove('active'));
-            showAllButton.classList.add('active');
-        });
-    }
+    // Layout Masonry on initial load
+    masonry.layout();
 });
 
+// COLLAPSIBLE NAVBAR
+document.addEventListener('DOMContentLoaded', () => {
+    const navbarToggle = document.querySelector('.navbar-toggle');
+    const navbarLinks = document.querySelector('.navbar-links');
 
+    navbarToggle.addEventListener('click', () => {
+        navbarToggle.classList.toggle('active');
+        navbarLinks.classList.toggle('active');
+    });
+
+    // Close the menu when a link is clicked (optional)
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navbarToggle.classList.remove('active');
+            navbarLinks.classList.remove('active');
+        });
+    });
+});
+
+// ABOUT PAGE CAROUSEL
+document.addEventListener("DOMContentLoaded", function() {
+    const carousels = document.querySelectorAll('.carousel');
+
+    carousels.forEach(carousel => {
+        const prevButton = carousel.querySelector('.prev');
+        const nextButton = carousel.querySelector('.next');
+        const inner = carousel.querySelector('.carousel-inner');
+        const items = carousel.querySelectorAll('.carousel-item');
+
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+    });
+});

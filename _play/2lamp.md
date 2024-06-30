@@ -5,7 +5,6 @@ tools: ["Procreate"]
 published: true
 layout: play
 permalink: /play/lamp
-index: 2
 
 image: "assets/postimages/test.jpg"
 image-alt: Test image

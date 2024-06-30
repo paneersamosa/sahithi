@@ -5,7 +5,6 @@ tools: ["Procreate"]
 published: true
 layout: play
 permalink: /play/@paneerarts
-index: 1
 
 image: "assets/postimages/test.jpg"
 image-alt: Test image

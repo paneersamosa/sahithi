@@ -19,22 +19,19 @@
     {{ content }}
 
     {% if site.play %}
-        {% assign current_item_id = page.index %}
-        {% assign total_items = site.play | size %}
-        
+        {% assign current_item_index = 0 %}
         {% for item in site.play %}
-            {% if item.index == current_item_id %}
-                {% assign current_item_index = forloop.index0 %}
+            {% if item.permalink == page.permalink %}
                 {% break %}
             {% endif %}
+            {% assign current_item_index = current_item_index | plus: 1 %}
         {% endfor %}
         
         {% assign previous_index = current_item_index | minus: 1 %}
         {% assign next_index = current_item_index | plus: 1 %}
-
+        
         <div class="navigation-buttons">
             {% if previous_index >= 0 %}
-                
                 <a class="prev-btn" href="{{ site.play[previous_index].permalink }}" class="btn">
                     <div class="prev-btn-content">
                         <p>PREV</p>
@@ -45,9 +42,9 @@
                 <div class="empty-div"></div>
             {% endif %}
             
-            {% if next_index < total_items %}
+            {% if next_index < site.play.size %}
                 <a class="next-btn" href="{{ site.play[next_index].permalink }}" class="btn">
-                    <div class="prev-btn-content">
+                    <div class="next-btn-content">
                         <p>NEXT</p>
                         <p>{{ site.play[next_index].title }}</p>
                     </div>
@@ -108,6 +105,14 @@
         text-transform: uppercase;
         font-size: 0.75em;
         color: var(--bright-lav);
+    }
+    .navigation-buttons .next-btn p:last-of-type, .navigation-buttons .prev-btn p:last-of-type {
+        color: var(--knight-purple);
+        border-bottom: 2px solid transparent;
+        transition: 0.5s;
+    }
+    .navigation-buttons .next-btn p:last-of-type:hover, .navigation-buttons .prev-btn p:last-of-type:hover {
+        border-bottom: 2px solid var(--bright-pink);
     }
     @media (max-width: 799px) {
         .play-content figure {

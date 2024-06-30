@@ -5,7 +5,6 @@ tools: ["Procreate"]
 published: true
 layout: play
 permalink: /play/reverie
-index: 3
 
 image: "assets/playimages/reverie/banner.png"
 image-alt: Test image

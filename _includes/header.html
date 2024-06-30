@@ -3,7 +3,7 @@
         <a href="{{ '/' | relative_url }}" class="nav-link"><img class="sllogo" src="{{ 'assets/sllogo.svg' | relative_url }}" alt="Monogram logo of the characters 's' and 'l'."></a>
     </div>
     <div class="navbar-links">
-        <ul>
+        <ul class="nav-menu">
             <li>
                 <a href="{{ '/work' | relative_url }}" class="nav-link">Work</a>
             </li>
@@ -15,6 +15,9 @@
             </li>
         </ul>
     </div>
+    <button class="navbar-toggle" aria-label="Toggle navigation">
+        <span class="toggle-icon"></span>
+    </button>
 </header>
 
 <style>
@@ -44,6 +47,10 @@
     }
     .navbar li {
         padding: 0px;
+        transition: 1s;
+    }
+    .navbar li:hover {
+        transform: translateY(-2.5px);
     }
     .navbar a {
         text-decoration: none;
@@ -60,5 +67,80 @@
     .nav-link.active {
     font-weight: bold;
     color: var(--bright-pink);
+    }
+    header button {
+        display: none;
+    }
+@media (max-width: 799px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        background-color: #EBE2FF;
+        z-index: 1000;
+        padding-bottom: 25px;
+    }
+    .navbar-links.active {
+        display: flex;
+    }
+    .nav-menu {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        margin: 0;
+    }
+    .nav-menu li {
+        margin-bottom: 0px;
+    }
+    .navbar-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+        position: relative; /* Ensure relative positioning for pseudo-elements */
+    }
+    .toggle-icon {
+        width: 25px;
+        height: 3px;
+        background-color: var(--knight-purple);
+        display: block;
+        transition: transform 0.3s ease;
+        position: relative; /* Position relative to the navbar-toggle */
+    }
+    .toggle-icon:before,
+    .toggle-icon:after {
+        content: '';
+        width: 100%;
+        height: 3px; /* Adjust height to match toggle-icon */
+        background-color: var(--knight-purple);
+        display: block;
+        position: absolute;
+        transition: transform 0.3s ease;
+        top: 0;
+        left: 0;
+    }
+    .toggle-icon:before {
+        transform: translateY(-8px); /* Position above toggle-icon */
+    }
+    .toggle-icon:after {
+        transform: translateY(8px); /* Position below toggle-icon */
+    }
+    .navbar-toggle.active .toggle-icon {
+        transform: rotate(45deg);
+    }
+    .navbar-toggle.active .toggle-icon:before {
+        transform: translateY(0) rotate(90deg);
+    }
+    .navbar-toggle.active .toggle-icon:after {
+        transform: translateY(0) rotate(-90deg);
+    }
 }
 </style>
