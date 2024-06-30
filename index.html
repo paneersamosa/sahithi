@@ -79,7 +79,7 @@ permalink: /
                         </div>
                         <p class="description"> {{ project.description }}</p>
                 
-                        <a href="{{ project.url | relative_url }}"><strong class="view-btn">VIEW PROJECT</strong></a>
+                        <a href="{{ project.url | relative_url }}"><strong class="view-btn">VIEW PROJECT<span class="material-symbols-outlined">arrow_right_alt</span></strong></a>
                     </div>
                 </div>
         
@@ -313,7 +313,8 @@ permalink: /
         margin-left: -1vw;
         padding: 0.5em;
         transition: 1s;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         border-radius: 10px;
     }
     .project-container .view-btn:hover {
@@ -327,7 +328,7 @@ permalink: /
             font-size: 2em;
         }
         .hero-landing .cloud-container {
-            bottom: 0;
+            bottom: 5%;
         }
         .hero-landing .cloud-container2 {
             bottom: 5%;
@@ -337,6 +338,7 @@ permalink: /
         }
         .hero-landing .ball1 {
             --scale: scale(0.35);
+            left: 1vw;
 
         }
         .hero-landing .ball2 {

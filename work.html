@@ -52,7 +52,7 @@ permalink: /work
                     <p class="description"> {{ project.description }}</p>
             
                     <div class="view-button">
-                        <a href="{{ project.url | relative_url }}"><strong class="view-btn">VIEW PROJECT</strong></a>
+                        <a href="{{ project.url | relative_url }}"><strong class="view-btn">VIEW PROJECT<span class="material-symbols-outlined">arrow_right_alt</span></strong></a>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,8 @@ permalink: /work
         margin-left: -1vw;
         padding: 0.5em;
         transition: 1s ease-in-out;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         border-radius: 10px;
     }
 

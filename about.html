@@ -10,10 +10,12 @@ layout: subpage
                 <h2>Hi, I'm Sahithi! 😌 💜</h2>
                 <div class="actions">
                     <div class="abutton">
-                        <a href="">CV</a>
+                        <a href=""><strong>CV</strong></a>
+                        <span class="material-symbols-outlined">open_in_new</span>
                     </div>
                     <div class="abutton">
-                        <a href="">Resume</a>
+                        <a href=""><strong>RESUME</strong></a>
+                        <span class="material-symbols-outlined">open_in_new</span>
                     </div>
                 </div>
             </div>
@@ -37,31 +39,31 @@ layout: subpage
             <div class="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/aboutimages/create1.png" alt="Alto's Odyssey">
+                        <img src="assets/aboutimages/create1.PNG" alt="My UCLA dorm desk with my computer in the foreground with a black and white graphic I designed.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/create2.jpg" alt="Lumino City">
+                        <img src="assets/aboutimages/create2.JPG" alt="A photo of me sketching Mirabel from Disney's Encanto.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/create3.jpg" alt="Firewatch">
+                        <img src="assets/aboutimages/create3.jpg" alt="A photo of a miniature dollhouse kit that I built.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/create4.jpg" alt="Monument Valley">
+                        <img src="assets/aboutimages/create4.jpg" alt="A close up photo of the miniature dollhouse kit that I built.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/create5.jpg" alt="Stardew Valley">
+                        <img src="assets/aboutimages/create5.jpg" alt="My UCLA dorm wall, featuring a poster and a few pieces of art that I drew or designed.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/create6.jpg" alt="Poptropica">
+                        <img src="assets/aboutimages/create6.jpg" alt="A miniature dollhouse kit that I built, with the title 'Sweet Dreams Among Blooms' displaying.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/create7.jpg" alt="Monument Valley">
+                        <img src="assets/aboutimages/create7.jpg" alt="A photo of a heat-transfer purple vinyl that has been cut and partially weeded. The image is of a drawing I made.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/create8.jpg" alt="Stardew Valley">
+                        <img src="assets/aboutimages/create8.jpg" alt="The heat-transfer purple vinyl has been pressed onto a tote bag.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/create9.jpg" alt="Poptropica">
+                        <img src="assets/aboutimages/create9.jpg" alt="A graduation picture with the back of my graduation cap in the foreground. The design says 'UCLA 2027' and is made up of cut gold, dark purple, light purple, and bright pink cardstock.">
                     </div>
                 </div>
                 <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
@@ -74,10 +76,10 @@ layout: subpage
             <div class="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/aboutimages/scioly0.jpg" alt="My Science Olympiad volunteer badge">
+                        <img src="assets/aboutimages/scioly0.jpg" alt="Me holding boba in front of a sign that reads 'Life is sweeter with more boba' at Bearology.">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/aboutimages/scioly1.jpg" alt="My Science Olympiad volunteer badge">
+                        <img src="assets/aboutimages/scioly1.jpg" alt="My Science Olympiad volunteer badge that reads 'Sahithi Lingampalli, Event Supervisor'.">
                     </div>
                     <div class="carousel-item">
                         <img src="assets/aboutimages/scioly2.jpg" alt="All the badges we hand cut to prepare for competition.">
@@ -151,6 +153,10 @@ layout: subpage
     .aboutcontent h2 {
         margin-top: 50px;
         margin-bottom: 1em;
+    }
+
+    .aboutcontent h2:first-of-type {
+        margin: 0;
     }
 
     .aboutcontent a {
@@ -240,28 +246,72 @@ layout: subpage
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
     }
-    .abbouttext .actions {
+    .abouttext .actions {
         display: flex;
         flex-direction: row;
         gap: 1em;
     }
-
-    @media (max-width: 1099px) {
-        .aboutcontent {
-            flex-direction: column;
-            flex-flow: column-reverse;
-            gap: 2.5em;
-            font-size: 0.8em;
-        }
-        .aboutme {
-            width: 100%;
-        }
-        .shortcv {
-            width: 100%;
-        }
+    .abouttext .actions .abutton {
+        margin: auto;
+        background: rgba(154, 119, 207, 0.10);
+        color: var(--bright-lav);
+        padding: 10px 15px;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: 0.5s;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5em;
     }
-    @media (min-width: 1100px) {
+    .abouttext .actions .abutton:hover {
+        background: var(--bright-lav);
+        color: var(--pale-purple);
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+    .abouttext .actions .abutton a {
+        text-decoration: none;
+        color: inherit;
+        border: none;
+    }
+
+    @media (max-width: 999px) {
+        .aboutme {
+            flex-direction: column-reverse;   
+        }
+        .aboutme img {
+            width: 45%;
+        }
+        .carousels {
+            flex-wrap: wrap;
+        }
+        .carousel {
+            width: 75%;
+            background: rgba(154, 119, 207, 0.10);
+        }
+        .carousel-item {
+            display: flex;
+            min-width: 100%;
+            transition: transform 0.5s ease-in-out;
+            height: 75vh;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-item img {
+            object-fit: contain;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .abouttext .header {
+            flex-direction: column;
+            gap: 1em;
+        }
     }
 
 </style>

@@ -53,11 +53,13 @@ permalink: /play
 
     .gallery-item {
         width: calc(33.333% - 20px); /* Adjust the percentage as needed */
-        margin-bottom: 10px; /* Space between rows */
+        margin-bottom: 20px; /* Space between rows */
+        margin-right: 20px; /* Adjust for gutter space */
         transition: transform 0.3s ease;
         position: relative;
         border-radius: 10px;
         overflow: hidden;
+        box-sizing: border-box; /* Ensure padding and border are included in width calculation */
     }
 
     .gallery-item img {
@@ -139,11 +141,30 @@ permalink: /play
         .gallery-item {
             width: 100%;
         }
+        .play-container .filter {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            align-items: center;
+        }
+        .play-container .filter-btn {
+            font-family: 'Brandon Text';
+            font-size: 20px;
+            padding: 0.25em 0.5em;
+            border-radius: 10px;
+            background: rgba(154, 119, 207, 0.10);
+            color: var(--bright-lav);
+            line-height: normal;
+            border: none;
+            transition: 0.5s ease-in-out;
+        }
+        .play-container .tag-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
     }
 </style>
-
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var grid = document.querySelector('.gallery');
@@ -151,7 +172,7 @@ permalink: /play
             var msnry = new Masonry(grid, {
                 itemSelector: '.gallery-item',
                 percentPosition: true,
-                gutter: 10 // Adjust the space between items
+                gutter: 20 // Adjust the space between items
             });
         });
     });

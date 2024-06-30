@@ -101,48 +101,68 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-//PROGRESS BAR
+// PROGRESS BAR
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.section');
     const progressBar = document.getElementById('progress-bar');
     const progressLinks = document.querySelectorAll('.progress-link');
     const mobileSections = document.getElementById('mobile-sections');
     const currentSection = document.getElementById('current-section');
-    const expandedSections = document.getElementById('expanded-sections');
     const offset = 200;
 
-    function updateProgressBar(section) {
-        const sectionHeight = section.offsetHeight;
+    // Ensure the required elements are present
+    if (!currentSection || !mobileSections) {
+        console.error('Required elements are not found in the DOM.');
+        return;
+    }
+
+    // Function to update the progress bar and current section indicator
+    function updateProgressBar() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const scrollBottom = scrollTop + window.innerHeight;
 
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + sectionHeight;
+        let nextIndex = -1;
 
-        if (scrollBottom >= sectionBottom) {
-            const index = Array.from(sections).indexOf(section);
-            const totalSections = sections.length;
-            const percentage = ((index + 1) / totalSections) * 100;
-            progressBar.style.width = percentage + '%';
-            progressBar.style.transition = 'width 1.5s ease';
+        // Find the index of the next section that is fully visible
+        for (let i = 0; i < sections.length; i++) {
+            const section = sections[i];
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
 
-            progressLinks.forEach(link => link.classList.remove('active'));
-            if (progressLinks[index]) {
-                progressLinks[index].classList.add('active');
-                // Update the current-section div with the current section title
-                currentSection.textContent = progressLinks[index].textContent;
+            if (scrollBottom >= sectionTop && scrollTop < sectionBottom) {
+                nextIndex = i;
+                break;
             }
         }
+
+        // Update progress bar and current section indicator
+        const totalSections = sections.length;
+        const percentage = ((nextIndex + 1) / totalSections) * 100;
+        
+        // Smooth transition logic
+        if (nextIndex === totalSections - 1) {
+            // Last section reached
+            progressBar.style.width = '100%';
+            progressBar.style.transition = 'width 1.5s ease';
+        } else {
+            // Not the last section
+            progressBar.style.width = percentage + '%';
+            progressBar.style.transition = 'width 1.5s ease';
+        }
+
+        progressLinks.forEach(link => link.classList.remove('active'));
+        progressLinks[nextIndex].classList.add('active');
+        currentSection.textContent = progressLinks[nextIndex].textContent;
     }
 
+    // Scroll event listener to update progress bar
     window.addEventListener('scroll', () => {
-        sections.forEach(section => {
-            updateProgressBar(section);
-        });
+        updateProgressBar();
     });
 
+    // Smooth scroll to section on progress link click
     document.querySelectorAll('.progress-link').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
@@ -154,16 +174,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initial update to set the current section title for mobile
-    if (sections.length > 0) {
-        updateProgressBar(sections[0]);
-    }
-
-    // Toggle function for current section title click
+    // Toggle function for current section title click (for mobile)
     currentSection.addEventListener('click', () => {
         mobileSections.classList.toggle('expanded');
     });
+
+    // Initial update to set the current section title for mobile
+    updateProgressBar();
 });
+
+
+
+
+
 
 // FILTER BY TAG ON WORK PAGE
 document.addEventListener('DOMContentLoaded', () => {
@@ -211,38 +234,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const gallery = document.querySelector('.gallery');
 
-    // Initialize Masonry
-    const masonry = new Masonry(gallery, {
-        itemSelector: '.gallery-item',
-        columnWidth: '.gallery-item', // Adjust this selector as per your layout
-        percentPosition: true
-    });
-
-    // Function to handle filtering
-    const handleFilter = (selectedTag) => {
-        const galleryItems = document.querySelectorAll('.gallery-item');
-
-        galleryItems.forEach(item => {
-            const tags = item.getAttribute('data-tags').split(',');
-            const isVisible = selectedTag === 'show-all' || tags.includes(selectedTag);
-
-            item.style.display = isVisible ? '' : 'none';
+    if (gallery) {
+        // Initialize Masonry
+        const masonry = new Masonry(gallery, {
+            itemSelector: '.gallery-item',
+            columnWidth: '.gallery-item', // Adjust this selector as per your layout
+            percentPosition: true
         });
 
-        // Layout Masonry after filtering
+        // Function to handle filtering
+        const handleFilter = (selectedTag) => {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryItems.forEach(item => {
+                const tags = item.getAttribute('data-tags').split(',');
+                const isVisible = selectedTag === 'show-all' || tags.includes(selectedTag);
+
+                item.style.display = isVisible ? '' : 'none';
+            });
+
+            // Layout Masonry after filtering
+            masonry.layout();
+        };
+
+        // Add click event listeners to filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedTag = button.getAttribute('data-tag');
+                handleFilter(selectedTag);
+            });
+        });
+
+        // Layout Masonry on initial load
         masonry.layout();
-    };
-
-    // Add click event listeners to filter buttons
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const selectedTag = button.getAttribute('data-tag');
-            handleFilter(selectedTag);
-        });
-    });
-
-    // Layout Masonry on initial load
-    masonry.layout();
+    }
 });
 
 // COLLAPSIBLE NAVBAR
