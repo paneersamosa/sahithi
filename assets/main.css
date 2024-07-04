@@ -18,7 +18,7 @@ html {
     background-color: var(--pale-purple);
     width: 100%;
     overflow-x: hidden;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 @font-face {
@@ -107,6 +107,9 @@ h4 {
 @media (max-width: 899px) {
     h1 {
         font-size: 3em;
+    }
+    p, li, button, div {
+        font-size: 0.85rem;
     }
 }
 @media (min-width: 900px) {    

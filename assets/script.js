@@ -116,51 +116,42 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Function to update the progress bar and current section indicator
-    function updateProgressBar() {
+    // Set the first section as the default current section
+    if (progressLinks.length > 0) {
+        progressLinks[0].classList.add('active');
+        currentSection.textContent = progressLinks[0].textContent;
+    }
+
+    function updateProgressBar(section) {
+        const sectionHeight = section.offsetHeight;
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const scrollBottom = scrollTop + window.innerHeight;
 
-        let nextIndex = -1;
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + sectionHeight;
 
-        // Find the index of the next section that is fully visible
-        for (let i = 0; i < sections.length; i++) {
-            const section = sections[i];
-            const sectionTop = section.offsetTop;
-            const sectionBottom = sectionTop + section.offsetHeight;
-
-            if (scrollBottom >= sectionTop && scrollTop < sectionBottom) {
-                nextIndex = i;
-                break;
-            }
-        }
-
-        // Update progress bar and current section indicator
-        const totalSections = sections.length;
-        const percentage = ((nextIndex + 1) / totalSections) * 100;
-        
-        // Smooth transition logic
-        if (nextIndex === totalSections - 1) {
-            // Last section reached
-            progressBar.style.width = '100%';
-            progressBar.style.transition = 'width 1.5s ease';
-        } else {
-            // Not the last section
+        if (scrollBottom >= sectionBottom) {
+            const index = Array.from(sections).indexOf(section);
+            const totalSections = sections.length;
+            const percentage = ((index + 1) / totalSections) * 100;
             progressBar.style.width = percentage + '%';
             progressBar.style.transition = 'width 1.5s ease';
-        }
 
-        progressLinks.forEach(link => link.classList.remove('active'));
-        progressLinks[nextIndex].classList.add('active');
-        currentSection.textContent = progressLinks[nextIndex].textContent;
+            progressLinks.forEach(link => link.classList.remove('active'));
+            if (progressLinks[index]) {
+                progressLinks[index].classList.add('active');
+                // Update the current-section div with the current section title
+                currentSection.textContent = progressLinks[index].textContent;
+            }
+        }
     }
 
-    // Scroll event listener to update progress bar
     window.addEventListener('scroll', () => {
-        updateProgressBar();
+        sections.forEach(section => {
+            updateProgressBar(section);
+        });
     });
 
-    // Smooth scroll to section on progress link click
     document.querySelectorAll('.progress-link').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -174,17 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Toggle function for current section title click (for mobile)
+    // Toggle function for current section title click
     currentSection.addEventListener('click', () => {
         mobileSections.classList.toggle('expanded');
     });
-
-    // Initial update to set the current section title for mobile
-    updateProgressBar();
 });
-
-
-
 
 
 
@@ -314,6 +299,29 @@ document.addEventListener("DOMContentLoaded", function() {
         nextButton.addEventListener('click', () => {
             currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
             updateCarousel();
+        });
+    });
+});
+
+// ANCHOR SCROLLS
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all anchor links with hashes
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                const offset = 200; // Adjust this value as needed
+                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 });
