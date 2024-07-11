@@ -3,7 +3,7 @@
         <a href="{{ '/' | relative_url }}" class="nav-link"><img class="sllogo" src="{{ 'assets/sllogo.svg' | relative_url }}" alt="Monogram logo of the characters 's' and 'l'."></a>
     </div>
     <div class="navbar-links">
-        <ul class="nav-menu">
+        <ul class="nav-menu {% if page.dark-mode %}dark{% else %}light{% endif %}">
             <li>
                 <a href="{{ '/work' | relative_url }}" class="nav-link">Work</a>
             </li>
@@ -71,6 +71,11 @@
     header button {
         display: none;
     }
+
+    .nav-menu.light a {
+        color: var(--knight-purple);
+    }
+
 @media (max-width: 799px) {
     .navbar-links {
         display: none;

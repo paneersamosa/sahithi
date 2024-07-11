@@ -24,20 +24,18 @@ html {
 @font-face {
     font-family: 'Brandon Text';
     font-style: normal;
-    font-weight: normal;
-    src: url(/assets/fonts/HVD\ Fonts\ -\ BrandonText-Regular.otf);
+    src: url(/assets/fonts/BTRegular.woff);
 }
 @font-face {
     font-family: 'Brandon Text';
     font-style: italic;
-    font-weight: normal;
-    src: url(/assets/fonts/HVD\ Fonts\ -\ BrandonText-RegularItalic.otf);
+    src: url(/assets/fonts/BTItalic.woff);
 }
 @font-face {
     font-family: 'Brandon Text';
-    font-weight: bold;
     font-style: normal;
-    src: url(/assets/fonts/HVD\ Fonts\ -\ BrandonText-Bold.otf);
+    font-weight: bold;
+    src: url(/assets/fonts/BTBold.woff);
 }
 
 body {

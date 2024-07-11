@@ -87,6 +87,8 @@ permalink: /
         
         {% endfor %}
 
+        <a href="{{ '/work' | relative_url }}"><strong class="btn-btn">VIEW ALL</strong></a>
+
     </div>
 
 </div>
@@ -259,6 +261,7 @@ permalink: /
         display: flex;
         flex-direction: column;
         gap: 5rem;
+        align-items: center;
     }
     .project-container .card {
         display: flex;
@@ -304,19 +307,34 @@ permalink: /
     .project-container .main-info p {
         color: var(--bright-lav);
     }
-    .project-container .card a {
+    .project-container a {
         text-decoration: none;
         color: var(--bright-lav);
     }
 
     .project-container .view-btn {
-        margin-left: -1vw;
+        margin-left: -0.5em;
         padding: 0.5em;
         transition: 1s;
         display: inline-flex;
         align-items: center;
         border-radius: 10px;
     }
+
+    .project-container .btn-btn {
+        padding: 0.5em 1em;
+        color: var(--pale-purple);
+        background-color: var(--knight-purple);
+        border-radius: 50px;
+        transition: 1s;
+    }
+
+    .project-container .btn-btn:hover {
+        background-color: var(--pale-purple);
+        border: 2px solid var(--bright-lav);
+        color: var(--bright-lav);
+    }
+
     .project-container .view-btn:hover {
         background-color: var(--knight-purple);
         color: var(--pale-purple);
